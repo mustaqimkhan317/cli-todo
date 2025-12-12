@@ -69,15 +69,18 @@ if __name__ == "__main__":
     main()
 
 '''
+--> Left
 1. created the structure I wanted
 2. the class file
 3. properly handle remove 
-
 4. Create a while loop to keep it running
-5. store it into database
-5. find security issues
-6. git/github
-7. production grade
-8. unit tests
+5. git/github
+
+--> Done
+6. store it into database
+7. find security issues
+8. multiple files
+9. production grade
+10. unit tests
 
 '''
