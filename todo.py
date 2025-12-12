@@ -1,26 +1,47 @@
+import json
+import os
+from datetime import datetime
+
 class Todo:
     def __init__(self):
         self.tasks = []
+
+    def load_task(self):
+        if not os.path.exists("tasks.json"):
+            self.tasks = []
+            return
+
+        with open("tasks.json", "r") as file:
+            self.tasks = json.load(file)
 
     def take_input(self):
         print("Welcome to the CLI To-do app\n")
         self.display()
         
         while True:
-            action = input("Want to add, delete tasks or exit? > \n").lower()
+            action = input("Want to add, delete, display tasks or exit? > \n").lower()
 
             if action == 'add':
                 self.add_item()
             elif action == 'delete':
                 self.remove_item()
+            elif action == 'display':
+                self.display()
             elif action == 'exit':
+                self.save_tasks()
                 print("Thank you, goodbye!")
                 break
             else:
                 print("Unknown action, Please choose 'add' or 'delete' ")
 
     def add_item(self):
-        task = input("What task would you want to add?? \n")
+        title = input("What task would you want to add?? \n")
+        
+        task = {
+            "title": title,
+            "created_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        }
+        
         self.tasks.append(task)
         print(f"Task {task} added")
         self.display()
@@ -37,7 +58,7 @@ class Todo:
             print("The task list is empty, there is nothing to remove")
             return
 
-        remove = input("Which task you want to remove (1, 2, 3...)")
+        remove = input("Which task you want to remove (1, 2, 3...)\n")
 
         if not remove.isdigit():
             print("Your input is not a digit")
@@ -56,12 +77,17 @@ class Todo:
 
     
     def display(self):
-        print(self.tasks)
+        for i, task in enumerate(self.tasks, start=1):
+            print(f"{i}. {task['title']} (added: {task['created_at']})")
+
+    def save_tasks(self):
+        with open("tasks.json", "w") as file:
+            json.dump(self.tasks, file, indent=2)
 
 
 def main():
     todo = Todo()
-
+    todo.load_task()
     todo.take_input()
     todo.display()
 
@@ -75,9 +101,10 @@ if __name__ == "__main__":
 3. properly handle remove 
 4. Create a while loop to keep it running
 5. git/github
+6. store it into database
 
 --> Done
-6. store it into database
+
 7. find security issues
 8. multiple files
 9. production grade
