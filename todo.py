@@ -4,14 +4,20 @@ class Todo:
 
     def take_input(self):
         print("Welcome to the CLI To-do app\n")
-        action = input("Would you like to add or delete a task? > \n")
+        self.display()
+        
+        while True:
+            action = input("Want to add, delete tasks or exit? > \n").lower()
 
-        if action == 'add':
-            self.add_item()
-        elif action == 'delete':
-            self.remove_item()
-        else:
-            print("Unknown action, Please choose 'add' or 'delete' ")
+            if action == 'add':
+                self.add_item()
+            elif action == 'delete':
+                self.remove_item()
+            elif action == 'exit':
+                print("Thank you, goodbye!")
+                break
+            else:
+                print("Unknown action, Please choose 'add' or 'delete' ")
 
     def add_item(self):
         task = input("What task would you want to add?? \n")
@@ -53,11 +59,14 @@ class Todo:
         print(self.tasks)
 
 
+def main():
+    todo = Todo()
 
-todo = Todo()
+    todo.take_input()
+    todo.display()
 
-todo.take_input()
-todo.display()
+if __name__ == "__main__":
+    main()
 
 '''
 1. created the structure I wanted
