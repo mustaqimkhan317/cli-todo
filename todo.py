@@ -95,7 +95,7 @@ if __name__ == "__main__":
     main()
 
 '''
---> Left
+--> Done
 1. created the structure I wanted
 2. the class file
 3. properly handle remove 
@@ -103,8 +103,7 @@ if __name__ == "__main__":
 5. git/github
 6. store it into database
 
---> Done
-
+--> Left
 7. find security issues
 8. multiple files
 9. production grade
