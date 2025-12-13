@@ -3,6 +3,24 @@ import os
 from datetime import datetime
 
 class Todo:
+    '''
+    Docstring for Todo
+    --> Done
+    1. created the structure/ responsibilites 
+    2. the class file
+    3. properly handle remove function
+    4. Create a while loop to keep it running
+    5. git/github
+    6. store it into database
+
+    --> Left
+    7. Understand JSON
+    8. find security issues
+    9. multiple files (Refactoring)
+    10. production grade
+    11. unit tests
+
+    '''
     def __init__(self):
         self.tasks = []
 
@@ -43,17 +61,12 @@ class Todo:
         }
         
         self.tasks.append(task)
-        print(f"Task {task} added")
         self.display()
     
     def remove_item(self):
-        ''' 
-        1. Print the list
-        2. Ask which one to remove
-        3. Check exception and remove
-        '''
-        self.display()
+        self.display() # Display the list
         
+        # Check whether the list is empty
         if not self.tasks:
             print("The task list is empty, there is nothing to remove")
             return
@@ -93,20 +106,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-'''
---> Done
-1. created the structure I wanted
-2. the class file
-3. properly handle remove 
-4. Create a while loop to keep it running
-5. git/github
-6. store it into database
-
---> Left
-7. find security issues
-8. multiple files
-9. production grade
-10. unit tests
-
-'''
