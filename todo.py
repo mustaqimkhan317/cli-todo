@@ -1,5 +1,6 @@
 from datetime import datetime
 from storage import load_task, save_tasks
+from tabulate import tabulate
 
 class Todo:
     '''
@@ -82,8 +83,15 @@ class Todo:
 
     
     def display(self):
+        headers = ['Index', 'Title', 'Date Created']
+        
+        table = []
         for i, task in enumerate(self.tasks, start=1):
-            print(f"{i}. {task['title']} (added: {task['created_at']})")
+            table.append([
+                str(i), task['title'], task['created_at']
+            ])
+        
+        print(tabulate(table, headers, tablefmt="grid"))
 
 
 def main():
