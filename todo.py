@@ -1,6 +1,5 @@
-import json
-import os
 from datetime import datetime
+from storage import load_task, save_tasks
 
 class Todo:
     '''
@@ -19,18 +18,11 @@ class Todo:
     9. multiple files (Refactoring)
     10. production grade
     11. unit tests
+    12. Improve display
 
     '''
     def __init__(self):
-        self.tasks = []
-
-    def load_task(self):
-        if not os.path.exists("tasks.json"):
-            self.tasks = []
-            return
-
-        with open("tasks.json", "r") as file:
-            self.tasks = json.load(file)
+        self.tasks = load_task()
 
     def take_input(self):
         print("Welcome to the CLI To-do app\n")
@@ -46,7 +38,7 @@ class Todo:
             elif action == 'display':
                 self.display()
             elif action == 'exit':
-                self.save_tasks()
+                save_tasks(self.tasks)
                 print("Thank you, goodbye!")
                 break
             else:
@@ -93,14 +85,9 @@ class Todo:
         for i, task in enumerate(self.tasks, start=1):
             print(f"{i}. {task['title']} (added: {task['created_at']})")
 
-    def save_tasks(self):
-        with open("tasks.json", "w") as file:
-            json.dump(self.tasks, file, indent=2)
-
 
 def main():
     todo = Todo()
-    todo.load_task()
     todo.take_input()
     todo.display()
 
