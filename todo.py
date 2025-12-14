@@ -12,6 +12,8 @@ class Todo:
     4. Create a while loop to keep it running
     5. git/github
     6. store it into database
+    12. Improve display
+    13. Refactor CLI Loop using Commands Dict
 
     --> Left
     7. Understand JSON
@@ -19,11 +21,18 @@ class Todo:
     9. multiple files (Refactoring)
     10. production grade
     11. unit tests
-    12. Improve display
+    
 
     '''
     def __init__(self):
         self.tasks = load_task()
+
+        self.commands = {
+            "add": self.add_item,
+            "delete": self.remove_item,
+            "display": self.display,
+            "exit": self.exit
+        }
 
     def take_input(self):
         print("Welcome to the CLI To-do app\n")
@@ -32,18 +41,20 @@ class Todo:
         while True:
             action = input("Want to add, delete, display tasks or exit? > \n").lower()
 
-            if action == 'add':
-                self.add_item()
-            elif action == 'delete':
-                self.remove_item()
-            elif action == 'display':
-                self.display()
-            elif action == 'exit':
-                save_tasks(self.tasks)
-                print("Thank you, goodbye!")
+            if not action:
+                print("Invalid input")
+                continue
+
+            command = self.commands.get(action)
+            
+            if not command: # If anything other than commands, command = None
+                print("Invalid input")
+                continue
+
+            command()  # Calling the function now
+
+            if action == "exit":
                 break
-            else:
-                print("Unknown action, Please choose 'add' or 'delete' ")
 
     def add_item(self):
         title = input("What task would you want to add?? \n")
@@ -93,6 +104,9 @@ class Todo:
         
         print(tabulate(table, headers, tablefmt="grid"))
 
+    def exit(self):
+        save_tasks(self.tasks)
+        print("Thank you, bye! \n")
 
 def main():
     todo = Todo()
