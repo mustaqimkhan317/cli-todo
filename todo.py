@@ -24,7 +24,7 @@ class Todo:
     
     '''
     def __init__(self):
-        self.tasks = load_task()
+        self.tasks = load_task("tasks.json")
 
         self.commands = {
             "add": self.add_item,
@@ -106,7 +106,7 @@ class Todo:
         print(tabulate(table, headers, tablefmt="grid"))
 
     def exit(self):
-        save_tasks(self.tasks)
+        save_tasks("tasks.json", self.tasks)
         print("Thank you, bye! \n")
 
 def main():

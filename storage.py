@@ -1,13 +1,13 @@
 import json
 import os
 
-def load_task():
-    if not os.path.exists("tasks.json"):
+def load_task(filename):
+    if not os.path.exists(filename):
         return []
 
-    with open("tasks.json", "r") as file:
+    with open(filename, "r") as file:
         return json.load(file)
 
-def save_tasks(tasks):
-    with open("tasks.json", "w") as file:
+def save_tasks(filename, tasks):
+    with open(filename, "w") as file:
         json.dump(tasks, file, indent=2)
