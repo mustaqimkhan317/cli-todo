@@ -54,7 +54,7 @@ cd cli-todo
 ```
 
 ```
-python todo.py
+python main.py
 ```
 
 ### Usage
