@@ -12,16 +12,13 @@ class Todo:
     4. Create a while loop to keep it running
     5. git/github
     6. store it into database
-    9. multiple files (Refactoring)
-    10. production grade
-    12. Improve display/print with tabulate
-    13. Refactor CLI Loop using Commands Dict
-
-    --> Left
     7. Understand JSON
     8. find security issues
+    9. multiple files (Refactoring)
+    10. production grade
     11. unit tests
-    
+    12. Improve display/print with tabulate
+    13. Refactor CLI Loop using Commands Dict
     '''
     def __init__(self):
         self.tasks = load_task("tasks.json")
