@@ -1,6 +1,4 @@
-from todo import *
-from storage import *
-
+from todo import Todo
 
 def main():
     print("Welcome to the CLI To-do app\n")

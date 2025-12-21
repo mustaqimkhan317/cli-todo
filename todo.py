@@ -31,9 +31,6 @@ class Todo:
         }
 
     def take_input(self):
-        print("Welcome to the CLI To-do app\n")
-        self.display()
-        
         while True:
             action = input("Want to add, delete, display tasks or exit? > \n").lower()
 
@@ -105,11 +102,3 @@ class Todo:
     def exit(self):
         save_tasks("tasks.json", self.tasks)
         print("Thank you, bye! \n")
-
-def main():
-    todo = Todo()
-    todo.take_input()
-    todo.display()
-
-if __name__ == "__main__":
-    main()
